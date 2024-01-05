@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main() {
+    int n;
+    cin>>n;
+    int ar[n]
+    for(int i=0;i<n;i++) 
+        cin>>a[i];
+    int arr[n][32];
+    for(int i=0;i<n;i++){
+        int f=a[i];
+        for(int j=0;j<32;j++){
+            if(f&(1<<j))
+                arr[i][31-j]=1;
+            else
+                arr[i][31-j]=0;
+        }
+    }
+    for(int j=0;j<32;j++){
+        for(int i=1;i<n;i++){
+            arr[i][31-j]+=arr[i-1][31-j];
+        }
+    }
+    int q;
+    cin>>q;
+    while(q--){
+        int l,r,ans=0;
+        cin>>l>>r;
+        int temp=r-l+1;
+        if(l==0){
+            for(int j=0;j<32;j++){
+                if(arr[r][j]==temp){
+                    ans+=pow(2,31-j);
+                }
+            }
+        }
+        else{
+            for(int j=0;j<32;j++){
+                if((arr[r][j]-arr[l-1][j])==temp) ans+=pow(2,31-j);
+            }
+        }
+        cout<<ans<<endl;
+    }
+}
