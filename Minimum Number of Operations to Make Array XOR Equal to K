@@ -1,0 +1,13 @@
+class Solution:
+    def minOperations(self, nums: List[int], k: int) -> int:
+        def set_bit_count(n):
+            c=0
+            while n:
+                c+=n&1
+                n>>=1
+            return c
+        s=0
+        for i in nums:
+            s^=i
+        res=s^k
+        return(set_bit_count(res))
