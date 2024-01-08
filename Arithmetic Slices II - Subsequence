@@ -1,0 +1,16 @@
+from collections import defaultdict
+class Solution:
+    def numberOfArithmeticSlices(self, nums: List[int]) -> int:
+        
+        n = len(nums)
+        mp = [defaultdict(int) for _ in range(n)]
+        ans = 0
+
+        for i in range(n):
+            for j in range(i):
+                diff = nums[i] - nums[j]
+                mp[i][diff] += 1
+                mp[i][diff] += mp[j][diff]
+                ans += mp[j][diff]
+
+        return ans
